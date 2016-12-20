@@ -1,0 +1,64 @@
+body {
+  padding: 0;
+}
+
+img {
+  width: auto;
+  height: 260px;
+}
+
+img:hover {
+  cursor: pointer;
+}
+
+#game-board {
+  display: flex;
+  flex-flow: row wrap;
+}
+
+.box {
+  text-align: center;
+  width: 33.3%;
+  height: 280px;
+  border: 10px solid;
+}
+
+.box:hover {
+  cursor: pointer;
+}
+
+#box-1 {
+  border-top: 0;
+  border-left: 0;
+}
+
+#box-2 {
+  border-top: 0;
+}
+
+#box-3 {
+  border-top: 0;
+  border-right: 0;
+}
+
+#box-4 {
+  border-left: 0;
+}
+
+#box-6 {
+  border-right: 0;
+}
+
+#box-7 {
+  border-left: 0;
+  border-bottom: 0;
+}
+
+#box-8 {
+  border-bottom: 0;
+}
+
+#box-9 {
+  border-right: 0;
+  border-bottom: 0;
+}
