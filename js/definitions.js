@@ -33,7 +33,7 @@ var forwardDiagonal = function(player, matrixLength) {
 
 var backwardsDiagonal = function(player, matrixLength) {
   var win = [];
-  for (var i = 2; i < answers.length - (matrixLength - 1); i += (matrixLength - 1)) {
+  for (var i = matrixLength - 1; i < answers.length - (matrixLength - 1); i += (matrixLength - 1)) {
     win.push(answers[i] === player);
   }
   return win.every(function(a) { return !!a });
@@ -53,12 +53,15 @@ var checkOwin = function() {
 
 var winner = function() {
   if (checkXwin()) {
-    alert('X won')
+    alert('X won');
+    resetBoard();
   } else if (checkOwin()) {
     alert('O won')
+    resetBoard();
   } else {
     if (counter > 6) {
       alert('Draw')
+      resetBoard();
     }
   }
 }
@@ -78,6 +81,32 @@ var generateGameBoard = function() {
   }
   $('.x').addClass('hidden');
   $('.o').addClass('hidden');
+
+  $('.box').each(function() {
+    $(this).on('click', function() {
+      turn = !turn
+      counter++;
+      if (turn) {
+        var type = $(this).find('.x');
+        type.removeClass('hidden');
+        move($(this).data('num'), type.attr('class'));
+        winner()
+      } else {
+        var type = $(this).find('.o');
+        type.removeClass('hidden');
+        move($(this).data('num'), type.attr('class'));
+        winner();
+      }
+    })
+  })
+}
+
+var resetBoard = function() {
+  $('#game-board').html('');
+  answers = Array(9);
+  generateGameBoard();
+  counter = 0;
+  turn = false;
 }
 
 var move = function(dataNum, type) {

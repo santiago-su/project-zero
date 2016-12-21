@@ -1,21 +1,13 @@
 $(document).ready(function() {
   generateGameBoard();
-
-  $('.box').each(function() {
-    $(this).on('click', function() {
-      turn = !turn
-      counter++;
-      if (turn) {
-        var type = $(this).find('.x');
-        type.removeClass('hidden');
-        move($(this).data('num'), type.attr('class'));
-        winner()
-      } else {
-        var type = $(this).find('.o');
-        type.removeClass('hidden');
-        move($(this).data('num'), type.attr('class'));
-        winner();
+  $('.start-buttons').hide();
+  $('.start-buttons').fadeIn(2000);
+  $('#start-multiplayer').on('click', function() {
+    $('#first-page').addClass('animated rotateOutUpLeft').one(
+      'webkitAnimationEnd mozAnimationEnd MSAnimationEnd oanimationend animationend', function() {
+        $('#first-page').addClass('hidden');
+        $('#game-board').fadeIn(2000).css({ display: 'flex' });
       }
-    })
+    );
   })
 })
